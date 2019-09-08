@@ -10,10 +10,30 @@ const initialData = {
       id: 'column-1',
       title: 'To do',
       taskIds: ['task-1', 'task-2', 'task-3', 'task-4'] // purpose: ownership, maintain order
+    },
+    'column-2': {
+      id: 'column-2',
+      title: 'In progress',
+      taskIds: [] // purpose: ownership, maintain order
+    },
+    'column-3': {
+      id: 'column-3',
+      title: 'Done',
+      taskIds: [] // purpose: ownership, maintain order
     }
   },
   // purpose: facilitate rendering of columns
-  columnOrder: ['column-1']
+  columnOrder: ['column-1', 'column-2', 'column-3']
 }
 
 export default initialData;
+
+// this.state = {
+//   tasks: { 'task-1': {id, content}, ... },
+//   columns: { 'column-1': {id, title, taskIds: ['task-1', ...] } },
+//   columnOrder: ['column-1', 'column-2', ...]
+// } 
+
+
+
+

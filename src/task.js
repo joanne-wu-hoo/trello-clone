@@ -7,8 +7,10 @@ const Container = styled.div`
   padding: 8px;
   margin-bottom: 8px;
   border-radius: 3px;
-  background-color: white;
+  // update background color based on drag state
+  background-color: ${props => (props.isDragging ? 'lightpink' : 'white')}
 `;
+
 
 
 class Task extends Component {
@@ -17,13 +19,14 @@ class Task extends Component {
       <Draggable 
         draggableId={this.props.task.id} 
         index={this.props.index}>
-        {(provided) => (
+        {(provided, snapshot) => (
           <Container 
             {...provided.draggableProps} 
-            {...provided.dragHandleProps}
+            {...provided.dragHandleProps} // what allows component to be draggable
             ref={provided.innerRef}
-            >
-          { this.props.task.content }
+            isDragging={snapshot.isDragging}
+          >
+            { this.props.task.content }
         </Container>
       )}
       </Draggable>
@@ -32,3 +35,13 @@ class Task extends Component {
 }
 
 export default Task;
+
+
+/** snapshot contains properties to style componetn during drag
+ * 
+ * 
+ * snapshot = {
+ *  isDragging: true/false
+ *  draggingOver: id of column currently being dragged over
+ * }
+ */
