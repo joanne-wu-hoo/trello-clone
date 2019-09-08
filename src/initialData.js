@@ -28,11 +28,6 @@ const initialData = {
 
 export default initialData;
 
-// this.state = {
-//   tasks: { 'task-1': {id, content}, ... },
-//   columns: { 'column-1': {id, title, taskIds: ['task-1', ...] } },
-//   columnOrder: ['column-1', 'column-2', ...]
-// } 
 
 
 

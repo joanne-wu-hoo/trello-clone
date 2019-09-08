@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Task from './task'
+import Task from './Task'
 import styled from 'styled-components';
 import { Droppable } from 'react-beautiful-dnd';
 
@@ -11,9 +11,12 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
 const Title = styled.h3`
   padding: 8px;
+  font-family: Roboto;
 `;
+
 const TaskList = styled.div`
   padding: 8px;
   transition: background-color 0.2x ease;

@@ -7,10 +7,10 @@ const Container = styled.div`
   padding: 8px;
   margin-bottom: 8px;
   border-radius: 3px;
+  font-family: Roboto-light;
   // update background color based on drag state
-  background-color: ${props => (props.isDragging ? 'lightpink' : 'white')}
+  background-color: ${props => (props.isDragging ? 'lightgrey' : 'white')}
 `;
-
 
 
 class Task extends Component {
