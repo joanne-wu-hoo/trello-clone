@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Task from './Task'
+import InnerTaskList from './InnerTaskList';
 import styled from 'styled-components';
 import { Droppable } from 'react-beautiful-dnd';
 
@@ -25,16 +25,9 @@ const TaskList = styled.div`
   min-height: 100px;
 `;
 
+
 class Column extends Component {
   render() {
-    let tasks = this.props.tasks.map((task, index) => 
-      <Task 
-        key={task.id} 
-        task={task} 
-        index={index}
-      />
-    );
-
     let { title } = this.props.column;
     
     return (
@@ -47,7 +40,7 @@ class Column extends Component {
               {...provided.droppableProps}
               isDraggingOver={snapshot.isDraggingOver} 
             > 
-                { tasks } 
+                <InnerTaskList tasks={this.props.tasks} />
                 {provided.placeholder}
             </TaskList>
           )}
@@ -59,12 +52,3 @@ class Column extends Component {
 }
 
 export default Column;
-
-/** snapshot contains properties to style componetn during drag
- * 
- * 
- * droppableSnapshot = {
- *  isDraggingOver: true/false
- *  draggingOverWith: id of draggable that is being dragged over (set to null if droppable is not being dropped over)
- * }
- */

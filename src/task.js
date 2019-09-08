@@ -36,12 +36,3 @@ class Task extends Component {
 
 export default Task;
 
-
-/** snapshot contains properties to style componetn during drag
- * 
- * 
- * snapshot = {
- *  isDragging: true/false
- *  draggingOver: id of column currently being dragged over
- * }
- */
