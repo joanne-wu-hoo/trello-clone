@@ -1,0 +1,77 @@
+# react-beautful-dnd
+
+[Tutorial](https://egghead.io/courses/beautiful-and-accessible-drag-and-drop-with-react-beautiful-dnd) | [Documentation](https://github.com/atlassian/react-beautiful-dnd)
+
+### **Components**
+1. DragDropContext (area for drag/drop), takes the following fns
+    * onDragStart
+    * onDragUpdate (moved to new position)
+    * **onDragEnd** (*required*, after drag/drop action, synchronously update state to reflect drag & drop result)
+2. Droppable (region that can be dropped onto)
+3. Draggable (component that can be dragged around)
+
+
+
+### **DragDropContext > onDragEnd**
+onDragEnd takes a result object as an argument; result object looks like:
+```javascript
+ result = { 
+  draggbleId: , //id of dragged task,
+  type: ,
+  reason: , 
+  source: {  // location info for start of drag 
+   droppableId:
+   index:
+  }, 
+  destination: { // location info for end of drag
+   droppableId:
+   index:
+  } 
+ }
+```
+
+We are most interested in destination, source, draggableId, 
+from result, so in onDragEnd we will want to destructure
+```javascript
+onDragEnd = result => {
+  const {destination, source, draggableId } = result;
+  ...
+}
+```
+
+### **Droppable/Draggable > provided**
+provided has: innerref, function to provide dom node to react-beautiful-dnd
+Droppable - needs droppableId, utilizes renderProp, expects child to be function that returns component
+Draggabel - needs draggableId
+
+expect callback function, which renders a component
+
+```javascript
+<Droppable droppableId={this.props.column.id}>
+          {provided =>  (
+            <Component 
+              ref={provided.innerRef} 
+              {...provided.droppableProps}> 
+                { tasks } 
+                {provided.placeholder}
+            </Component>
+          )}
+</Droppable>
+```
+
+```javascript
+<Draggable 
+  draggableId={this.props.task.id} 
+  index={this.props.index}>
+  {(provided) => (
+    <Component 
+      {...provided.draggableProps} 
+      {...provided.dragHandleProps}
+      ref={provided.innerRef}
+      >
+    { this.props.task.content }
+  </Component>
+)}
+</Draggable>
+```
+
